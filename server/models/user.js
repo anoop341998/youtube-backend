@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const moment = require("moment");
 const saltRounds = 10;
+const env = require('dotenv').config();
 
 const userSchema = mongoose.Schema({
     name: {
@@ -62,7 +63,7 @@ userSchema.methods.comparePassword = function(plainPassword, cb){
 
 userSchema.methods.generateToken = function(cb){
     let user = this;
-    let token = jwt.sign(user._id, 'secretcharacter');
+    let token = jwt.sign(user._id.toHexString(), 'secretcharacter').toString();
     let oneHour = moment().add(1, 'hour').valueOf();
     user.token = token;
     user.tokenExp = oneHour;
