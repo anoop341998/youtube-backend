@@ -8,10 +8,6 @@
     "npm": "6.14.8"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "backend": "nodemon ./server/index.js",
-    "frontend": "npm run start --prefix client",
-    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
     "start": "node server/index.js"
     
   },
