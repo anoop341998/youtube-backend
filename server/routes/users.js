@@ -4,7 +4,7 @@ const {User} = require('../models/user');
 const {auth} = require('../middleware/auth');
 
 
-router.get('/auth',auth, (req,res) => {
+router.post('/auth',auth, (req,res) => {
     return res.status(200).json({
         _id: req.user._id,
         isAuth: true,
@@ -57,13 +57,24 @@ router.post('/login', (req,res) => {
         //generate token
         user.generateToken((err, userData) => {
             if(err) res.status(400).json({error: 'unable to generate token'});
-            res.cookie("x_authExp", user.tokenExp); 
-                res.cookie('x_auth',user.token)
-                .status(200)
+            res.status(200)
                 .json({
-                    loginSuccess: true, userId: user._id
+                    "loginSuccess": true, 
+                    "userId": user._id, 
+                    "x_auth": user.token, 
+                    "x_authExp": user.tokenExp
                 })
         })
+
+        // user.generateToken((err, userData) => {
+        //     if(err) res.status(400).json({error: 'unable to generate token'});
+        //     res.cookie("x_authExp", user.tokenExp); 
+        //         res.cookie('x_auth',user.token)
+        //         .status(200)
+        //         .json({
+        //             loginSuccess: true, userId: user._id
+        //         })
+        // })
     })
 
 })
