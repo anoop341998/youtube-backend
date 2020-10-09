@@ -34,6 +34,3 @@ console.log(process.env.NODE_ENV);
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
 });
-
-
-// Just added ffmpeg build pack
