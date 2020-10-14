@@ -16,6 +16,8 @@ mongoose.connect( config.mongoURI,{
         .then(() => console.log('Db connected'))
         .catch((err) => console.log(err.message));
 
+
+
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
