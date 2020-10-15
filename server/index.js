@@ -19,8 +19,8 @@ mongoose.connect( config.mongoURI,{
 
 
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true, limit: '50mb'}));
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(cookieParser());
 app.use('/api/users',require('./routes/users'));
 app.use('/uploads',express.static('uploads'));
